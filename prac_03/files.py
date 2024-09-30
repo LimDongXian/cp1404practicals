@@ -18,11 +18,13 @@ in_file.close()
 # 17
 # 42
 # 400
-
-
 # Write code that opens numbers.txt, reads only the first two numbers, adds them together then prints the result,
 # which should be... 59. Use with instead of open and close for this question.
-
+with open('number.txt', 'r') as in_file:
+    number_1 = int(in_file.readline().strip())
+    number_2 = int(in_file.readline().strip())
+result = number_1 + number_2
+print(result)
 
 # 4. Now write a fourth block of code that prints the total for all lines in numbers.txt.
 # This should work for a file with any number of numbers. Use with instead of open and close for this question.
