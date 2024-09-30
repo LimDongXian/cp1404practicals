@@ -15,3 +15,4 @@ Could line 2 have produced a 4? : No"""
 """Smallest: 2.5, Largest: 5.5"""
 
 # Write code, not a comment, to produce a random number between 1 and 100 inclusive.
+print(random.randint(1,100))
