@@ -1,9 +1,9 @@
 #   1.Write code that asks the user for their name, then opens a file called name.txt and writes that name to it.
 #   Use open and close for this question.
-# name = input("Enter your name: ")
-# out_file = open('name.txt', 'w')
-# print(name, file=out_file)
-# out_file.close()
+name = input("Enter your name: ")
+out_file = open('name.txt', 'w')
+print(name, file=out_file)
+out_file.close()
 
 # 2. In the same file, but as if it were a separate program,
 # write code that opens "name.txt" and reads the name (as above) then prints (note the exact output),
@@ -28,3 +28,8 @@ print(result)
 
 # 4. Now write a fourth block of code that prints the total for all lines in numbers.txt.
 # This should work for a file with any number of numbers. Use with instead of open and close for this question.
+total = 0
+with open('number.txt', 'r') as in_file:
+    for line in in_file:
+        total = total + int(line)
+print(total)
