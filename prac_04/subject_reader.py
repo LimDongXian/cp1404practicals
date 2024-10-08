@@ -5,7 +5,6 @@ Data file -> lists program
 
 FILENAME = "subject_data.txt"
 
-
 def main():
     data = load_data()
     print(data)
