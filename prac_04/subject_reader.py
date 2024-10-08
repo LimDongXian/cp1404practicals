@@ -31,6 +31,7 @@ def load_data():
 
 
 def display_data(data):
+    """Print data in F string form line by line"""
     for info in data:
         print(f"{info[0]} is taught by {info[1]} and has {info[2]} students")
 
