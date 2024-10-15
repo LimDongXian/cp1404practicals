@@ -19,6 +19,7 @@ def main():
 
 
 def read_wimbledon_data():
+    """read the CSV file and returns the data as a list of lists"""
     data = []
     with open(FILENAME, "r", encoding="utf-8-sig") as in_file:
         in_file.readline()  # Skip the header
@@ -29,6 +30,7 @@ def read_wimbledon_data():
 
 
 def get_champion_wins(data):
+    """get dictionary with champion names and their win counts"""
     champion_to_wins = {}
     for row in data:
         champion = row[2]
@@ -37,6 +39,7 @@ def get_champion_wins(data):
 
 
 def get_countries(data):
+    """get a set of countries"""
     countries = set()
     for row in data:
         country = row[1]
