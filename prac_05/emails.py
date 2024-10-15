@@ -1,7 +1,7 @@
 """
-Word Occurrences
+Emails
 Estimate: 20 minutes
-Actual:   20 minutes
+Actual:   26 minutes
 """
 
 emails_to_name = {"lindsay.ward@jcu.edu.au": "Lindsay Ward", "abe@gmail.com": "Abe",
