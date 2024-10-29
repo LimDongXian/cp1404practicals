@@ -1,3 +1,6 @@
+CURRENT_YEAR = 2024
+
+
 class Guitar:
     def __init__(self, name="", year=0, cost=0):
         self.name = name
@@ -5,13 +8,10 @@ class Guitar:
         self.cost = cost
 
     def __str__(self):
-        return f"{name} ({year}) : ${cost}"
+        return f"{self.name} ({self.year}) : ${self.cost}"
 
+    def get_age(self):
+        return CURRENT_YEAR - self.year
 
-
-
-
-name = "Gibson L-5 CES"
-year = 1922
-cost = 16035.40
-print(f"My guitar: {name}, first made in {year}")
+    def is_vintage(self):
+        return Guitar.get_age(self) > 50
