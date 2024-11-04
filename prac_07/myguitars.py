@@ -19,6 +19,7 @@ def main():
 
 
 def load_file():
+    """Load guitars from a file and return a list of Guitar objects."""
     guitars = []
     in_file = open("guitars.csv", "r")
     for line in in_file:
@@ -30,12 +31,14 @@ def load_file():
 
 
 def write_file(guitars):
+    """Write the list of guitars to a file."""
     with open("guitars.csv", "w") as out_file:
         for guitar in guitars:
             out_file.write(f"{guitar.name}, {guitar.year}, {guitar.cost}\n")
 
 
 def display_guitars(guitars):
+    """Display all guitars in the list."""
     for guitar in guitars:
         print(guitar)
 
