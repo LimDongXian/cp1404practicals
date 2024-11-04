@@ -14,6 +14,7 @@ def main():
     guitars.sort()  # sort by year as the Guitar class coded
     print("\n...snip...\n")
     print("These are my guitars:")
+    write_file(guitars)
     display_guitars(guitars)
 
 
@@ -26,6 +27,12 @@ def load_file():
         guitars.append(guitar)
     in_file.close()
     return guitars
+
+
+def write_file(guitars):
+    with open("guitars.csv", "w") as out_file:
+        for guitar in guitars:
+            out_file.write(f"{guitar.name}, {guitar.year}, {guitar.cost}\n")
 
 
 def display_guitars(guitars):
