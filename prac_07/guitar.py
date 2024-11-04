@@ -17,6 +17,7 @@ class Guitar:
         return f"{self.name} ({self.year}) : ${self.cost:.2f}"
 
     def __lt__(self, other):
+        """Returns true if the guitar is less than the other guitar."""
         return self.year < other.year
 
     def get_age(self):
