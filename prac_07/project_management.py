@@ -84,7 +84,7 @@ def add_project(projects):
 def update_project(projects):
     for i, project in enumerate(projects):
         print(f"{i} {project}")
-    project_choice = get_valid_number("Project choice: ", len(projects) + 1, MINIMUM_NUMBER)
+    project_choice = get_valid_number("Project choice: ", len(projects) - 1, MINIMUM_NUMBER)
     selected_project = projects[project_choice]
     print(selected_project)
     new_percentage = get_valid_number("New percentage: ", PERCENTAGE_THRESHOLD, MINIMUM_NUMBER)
@@ -95,7 +95,7 @@ def update_project(projects):
 def get_valid_number(prompt, high, low):
     try:
         number = int(input(prompt))
-        if number < low or number > high:
+        while number < low or number > high:
             print("Invalid number")
             number = int(input(prompt))
     except ValueError:
