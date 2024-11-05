@@ -5,16 +5,39 @@ Actual:    minutes
 """
 from prac_07.project import Project
 
+MENU = ("- (L)oad projects\n - (S)ave projects\n - (D)isplay projects\n - (F)ilter projects by dat\n"
+        " - (A)dd new project\n - (U)pdate project\n - (Q)uit")
+FILENAME = "projects.txt"
+
 
 def main():
-    print("Welcome to Pythonic Project Management")
     projects = load_file()
-    display_projects(projects)
+    print("Welcome to Pythonic Project Management")
+    print(f"Loaded {len(projects)} projects from {FILENAME}")
+    print(MENU)
+    choice = input(">>> ").upper()
+    while choice != "Q":
+        if choice == "L":
+            print("Loaded projects")
+        if choice == "S":
+            print("Save projects")
+        if choice == "D":
+            display_projects(projects)
+        if choice == "F":
+            print("Filter projects by dat")
+        if choice == "A":
+            print("Add new project")
+        if choice == "U":
+            print("Update project")
+        else:
+            print("Invalid Choice")
+            choice = input(">>> ").upper()
+    print("Thank you for using custom-built project management software.")
 
 
 def load_file():
     projects = []
-    with open('projects.txt', 'r') as in_file:
+    with open(FILENAME, 'r') as in_file:
         in_file.readline()
         for line in in_file:
             part = line.strip().split("	")
