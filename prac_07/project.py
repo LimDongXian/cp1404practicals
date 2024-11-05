@@ -18,3 +18,10 @@ class Project:
 
     def is_completed(self):
         return self.completion_percentage == 100
+
+    def update_project(self, new_priority, new_completion_percentage):
+        """Update completion and/or priority if provided (leaves as is if None)."""
+        if new_completion_percentage != "":
+            self.completion_percentage = new_completion_percentage
+        if new_priority != "":
+            self.priority = new_priority
