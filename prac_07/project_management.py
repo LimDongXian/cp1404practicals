@@ -1,11 +1,10 @@
 """
 Project Management
-Estimate: 30 minutes
-Actual:    minutes
+Estimate: 2 Hours
+Actual:   3 Hours
 """
 import datetime
 from prac_07.project import Project
-from operator import itemgetter
 
 MENU = (" - (L)oad projects\n - (S)ave projects\n - (D)isplay projects\n - (F)ilter projects by date\n"
         " - (A)dd new project\n - (U)pdate project\n - (Q)uit")
@@ -24,6 +23,7 @@ def main():
     while choice != "Q":
         if choice == "L":
             filename = input("Enter filename to load projects: ")
+            load_file(filename)
         elif choice == "S":
             save_file(projects)
         elif choice == "D":
@@ -40,13 +40,14 @@ def main():
             print("Invalid Choice")
         print(MENU)
         choice = input(">>> ").upper()
-    is_save = input(f"Would you like to save to {FILENAME}? ")
-    if "Yes" or "yes" in is_save:
+    is_save = input(f"Would you like to save to {FILENAME}? ").lower()
+    if "yes" in is_save:
         save_file(projects)
     print("Thank you for using custom-built project management software.")
 
 
 def load_file(filename):
+    """Load projects from a file and return a list of Project objects."""
     projects = []
     with open(filename, 'r') as in_file:
         in_file.readline()  # skip header
@@ -58,6 +59,7 @@ def load_file(filename):
 
 
 def save_file(projects):
+    """Save the list of projects to the default FILENAME file."""
     with open(FILENAME, 'w') as out_file:
         out_file.write("\n")  # To prevent first line data lost as load file skip header
         for project in projects:
@@ -67,6 +69,7 @@ def save_file(projects):
 
 
 def display_projects(projects):
+    """Display projects, separating incomplete and completed projects."""
     incomplete_projects = [project for project in projects if not project.is_completed()]
     completed_projects = [project for project in projects if project.is_completed()]
     print("Incomplete projects:")
@@ -78,6 +81,7 @@ def display_projects(projects):
 
 
 def filter_project(projects, date):
+    """Filter projects to show only those that start after a specified date."""
     date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
     filtered_projects = sorted((project for project in projects if project.start_date >= date),
                                key=lambda project: project.start_date)
@@ -86,6 +90,7 @@ def filter_project(projects, date):
 
 
 def add_project(projects):
+    """Add a new project with details and add it to the project list."""
     name = input("Name: ")
     start_date = input("Start date (dd/mm/yyyy): ")
     priority = int(input("Priority: "))
@@ -96,6 +101,7 @@ def add_project(projects):
 
 
 def update_project(projects):
+    """Update an existing project's priority and completion percentage."""
     for i, project in enumerate(projects):
         print(f"{i} {project}")
     project_choice = get_valid_number("Project choice: ", len(projects) - 1, MINIMUM_NUMBER)
@@ -107,6 +113,8 @@ def update_project(projects):
 
 
 def get_valid_number(prompt, high, low):
+    """Prompt the user to enter a number within a valid range (low to high)"""
+    """Return empty string if user enters invalid.(for priority and completion percentage"""
     try:
         number = int(input(prompt))
         while number < low or number > high:
