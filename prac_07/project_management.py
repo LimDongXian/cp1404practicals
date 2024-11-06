@@ -25,7 +25,7 @@ def main():
         if choice == "L":
             filename = input("Enter filename to load projects: ")
         elif choice == "S":
-            print("Save projects")
+            save_file(projects)
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
@@ -40,13 +40,16 @@ def main():
             print("Invalid Choice")
         print(MENU)
         choice = input(">>> ").upper()
+    is_save = input(f"Would you like to save to {FILENAME}? ")
+    if "Yes" or "yes" in is_save:
+        save_file(projects)
     print("Thank you for using custom-built project management software.")
 
 
 def load_file(filename):
     projects = []
     with open(filename, 'r') as in_file:
-        in_file.readline()
+        in_file.readline()  # skip header
         for line in in_file:
             part = line.strip().split("	")
             project = Project(str(part[0]), part[1], int(part[2]), float(part[3]), int(part[4]))
@@ -56,9 +59,11 @@ def load_file(filename):
 
 def save_file(projects):
     with open(FILENAME, 'w') as out_file:
+        out_file.write("\n")  # To prevent first line data lost as load file skip header
         for project in projects:
-            out_file.write(f"{project.name}, {project.start_date}, {project.priority}"
-                           f", {project.cost_estimate}, {project.completion_percentage}\n")
+            out_file.write(f"{project.name}	{project.start_date.strftime("%d/%m/%Y")}	{project.priority}"
+                           f"	{project.cost_estimate}	{project.completion_percentage}\n")
+    print("Project Saved")
 
 
 def display_projects(projects):
