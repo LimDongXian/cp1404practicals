@@ -5,8 +5,9 @@ Actual:    minutes
 """
 import datetime
 from prac_07.project import Project
+from operator import itemgetter
 
-MENU = (" - (L)oad projects\n - (S)ave projects\n - (D)isplay projects\n - (F)ilter projects by dat\n"
+MENU = (" - (L)oad projects\n - (S)ave projects\n - (D)isplay projects\n - (F)ilter projects by date\n"
         " - (A)dd new project\n - (U)pdate project\n - (Q)uit")
 FILENAME = "projects.txt"
 PERCENTAGE_THRESHOLD = 100
@@ -23,13 +24,13 @@ def main():
     while choice != "Q":
         if choice == "L":
             filename = input("Enter filename to load projects: ")
-            projects = load_file(filename)
         elif choice == "S":
             print("Save projects")
         elif choice == "D":
             display_projects(projects)
         elif choice == "F":
-            print("Filter projects by date")
+            date_string = input("Show projects that start after date (dd/mm/yyyy): ")
+            filter_project(projects, date_string)
         elif choice == "A":
             print("Let's add a new project")
             add_project(projects)
@@ -44,7 +45,7 @@ def main():
 
 def load_file(filename):
     projects = []
-    with open(FILENAME, 'r') as in_file:
+    with open(filename, 'r') as in_file:
         in_file.readline()
         for line in in_file:
             part = line.strip().split("	")
@@ -56,7 +57,7 @@ def load_file(filename):
 def save_file(projects):
     with open(FILENAME, 'w') as out_file:
         for project in projects:
-            out_file.write(f"{project.name}, {project.start_data}, {project.priority}"
+            out_file.write(f"{project.name}, {project.start_date}, {project.priority}"
                            f", {project.cost_estimate}, {project.completion_percentage}\n")
 
 
@@ -68,6 +69,14 @@ def display_projects(projects):
         print(project)
     print("Completed projects:")
     for project in sorted(completed_projects):
+        print(project)
+
+
+def filter_project(projects, date):
+    date = datetime.datetime.strptime(date, "%d/%m/%Y").date()
+    filtered_projects = sorted((project for project in projects if project.start_date >= date),
+                               key=lambda project: project.start_date)
+    for project in filtered_projects:
         print(project)
 
 
