@@ -14,7 +14,7 @@ class Project:
 
     def __str__(self):
         return (f"{self.name}, start: {self.start_date.strftime("%d/%m/%Y")}, priority {self.priority}, "
-                f"estimate: ${self.cost_estimate}, completion: {self.completion_percentage} %")
+                f"estimate: ${self.cost_estimate}, completion: {self.completion_percentage}%")
 
     def is_completed(self):
         return self.completion_percentage == 100
