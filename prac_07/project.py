@@ -2,9 +2,9 @@ import datetime
 
 
 class Project:
-    def __init__(self, name=str, start_data=datetime, priority=int, cost_estimate=float, completion_percentage=int):
+    def __init__(self, name=str, start_date=datetime, priority=int, cost_estimate=float, completion_percentage=int):
         self.name = name
-        self.start_data = start_data
+        self.start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
         self.priority = priority
         self.cost_estimate = cost_estimate
         self.completion_percentage = completion_percentage
@@ -13,7 +13,7 @@ class Project:
         return self.priority < other.priority
 
     def __str__(self):
-        return (f"{self.name}, start: {self.start_data}, priority {self.priority}, "
+        return (f"{self.name}, start: {self.start_date.strftime("%d/%m/%Y")}, priority {self.priority}, "
                 f"estimate: ${self.cost_estimate}, completion: {self.completion_percentage} %")
 
     def is_completed(self):
