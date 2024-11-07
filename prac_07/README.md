@@ -12,4 +12,4 @@ I'm Lim Dong Xian, a JCU Singapore student pursuing a degree in IT. I used this 
 
 ### Useful Links
 - [Programming Patterns Page](https://github.com/CP1404/Starter/wiki/Programming-Patterns)  
-- [CP1404 Practicals Instructions Repo](https://github.com/CP1404/Practicals?tab=readme-ov-file)ally organized and minimizes confusion when working in teams.
+- [CP1404 Practicals Instructions Repo](https://github.com/CP1404/Practicals?tab=readme-ov-file)
