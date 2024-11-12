@@ -14,13 +14,20 @@ class ConvertMilesKm(App):
         return self.root
 
     def handle_calculation(self):
-        value = float(self.root.ids.input_miles.text)
+        value = self.get_valid_number()
         result = value * MILES_TO_KM
         self.root.ids.output_km.text = str(result)
 
     def handle_increment(self, modify):
-        new_value = float(self.root.ids.input_miles.text) + modify
+        new_value = self.get_valid_number() + modify
         self.root.ids.input_miles.text = str(new_value)
+
+    def get_valid_number(self):
+        try:
+            number = float(self.root.ids.input_miles.text)
+            return number
+        except ValueError:
+            return 0
 
 
 ConvertMilesKm().run()
