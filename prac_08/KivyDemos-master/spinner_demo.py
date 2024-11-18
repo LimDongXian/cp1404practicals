@@ -9,9 +9,9 @@ from kivy.lang import Builder
 from kivy.properties import StringProperty
 from kivy.properties import ListProperty
 
-STATE_TO_NAME = {'QLD': "Queensland", 'NSW': "New South Wales", 'VIC': "Victoria", 'WA': "Western Australia",
+STATE_TO_NAME = {'MLY': "Malaysia", 'NSW': "New South Wales", 'VIC': "Victoria", 'WA': "Western Australia",
                  'TAS': "Tasmania", 'NT': "Northern Territory", 'SA': "South Australia", 'ACT': "Canberra",
-                 'NQ': "Cowboys!", 'NZ': "New Zealand"}
+                 'SG': "Singapore!", 'NZ': "New Zealand"}
 
 
 class SpinnerDemo(App):
