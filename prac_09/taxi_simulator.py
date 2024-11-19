@@ -6,6 +6,7 @@ MENU = "q)uit, c)hoose taxi, d)rive"
 
 
 def main():
+    """Loop for the taxi fare simulator."""
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
     total_price = 0
     current_taxi = None
@@ -42,7 +43,7 @@ def main():
         else:
             print("Invalid option")
         print(f"Bill to date: ${total_price:.2f}")
-        print(MENU)  # loop start here for every choice done
+        print(MENU)
         choice = input(">>> ").lower()
     print(f"Total trip cost: ${total_price:.2f}")
     print("Taxis are now:")
@@ -50,23 +51,10 @@ def main():
 
 
 def display_taxis(taxis):
+    """Display a list of taxis with their details."""
     print("Taxi available: ")
-    for i, taxi in enumerate(taxis):
+    for i in range(len(taxis)):
         print(f"{i} - {taxis[i]}")
-
-
-def get_valid_number(prompt, low, high):
-    valid_number = False
-    while not valid_number:
-        try:
-            number = int(input(">>>"))
-            if number < low or number > high:
-                print("Invalid taxi choice")
-            else:
-                valid_number = True
-                return number
-        except ValueError:
-            print("Please input a number")
 
 
 main()
